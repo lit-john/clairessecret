@@ -10,6 +10,12 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+/*
+ * Requiring the following package to be able to use sessions.
+ * Need sessions to be able to store user details
+ */
+var session = require('express-session');
+
 var app = express();
 
 // view engine setup
@@ -23,6 +29,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
+//Including this to get sessions to work
+var expressSessionOptions = {
+  secret:'mySecret',
+  resave: false,
+  saveUninitialized: false
+}
+app.use(session(expressSessionOptions));
+
 
 
 //Anytime i get any kind of a request, use routes, which is the index.js file
