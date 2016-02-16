@@ -5,6 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+
+//This is telling the app that routes is = the index.js file, which is in the routes folder
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
@@ -22,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//Anytime i get any kind of a request, use routes, which is the index.js file
 app.use('/', routes);
 app.use('/users', users);
 
