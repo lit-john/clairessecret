@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var RedisStore = require('connect-redis')(express);
+//var RedisStore = require('connect-redis')(express);
 
 //This is telling the app that routes is = the index.js file, which is in the routes folder
 var routes = require('./routes/index');
@@ -31,7 +31,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(express.session({ store: new RedisStore }));
+//app.use(express.session({ store: new RedisStore }));
 
 //Including this to get sessions to work
 var expressSessionOptions = {
@@ -41,11 +41,11 @@ var expressSessionOptions = {
 }
 app.use(session(expressSessionOptions));
 
-app.use(express.session({ store: new RedisStore({
+/*app.use(express.session({ store: new RedisStore({
   host:'127.0.0.1',
   port:6380,
   prefix:'sess'
-}), secret: 'SEKR37' }));
+}), secret: 'SEKR37' }));*/
 
 //Anytime i get any kind of a request, use routes, which is the index.js file
 app.use('/', routes);
