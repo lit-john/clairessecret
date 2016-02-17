@@ -1,0 +1,16 @@
+doctype html
+html
+	head
+		meta(http-equiv='cache-control', content='no-store')
+		title User Login
+	body
+		form(method=post, action='/login')
+			label(for='login') Username:
+			br
+			input(name='userName')
+
+      label(for='password') Password:
+			br
+			input(name='password')
+
+			input(type='login', name='submit', value='Go')

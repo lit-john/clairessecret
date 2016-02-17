@@ -1,0 +1,21 @@
+doctype html
+html
+	head
+		meta(http-equiv='cache-control', content='no-store')
+		title User Login
+	body
+
+    h1 Oops, your details appear to be incorrect!
+    br
+    h2 Please try again
+
+		form(method=post, action='/login')
+			label(for='login') Username:
+			br
+			input(name='userName')
+
+      label(for='password') Password:
+			br
+			input(name='password')
+
+			input(type='login', name='submit', value='Go')

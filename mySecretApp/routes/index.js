@@ -1,6 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
+//Found this server on http://expressjs-book.com/index.html%3Fp=128.html
+var RedisStore = require('connect-redis')(express);
+
+var username = "clairelit";
+var password = "litclonmel";
+
+
 //This is where the requests are sent by the router.
 //If the router just receives a get request with /, use the function below
 //This is the file that handles all of the requests.
