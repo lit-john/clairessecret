@@ -9,13 +9,14 @@ html
     br
     h2 Please try again
 
-		form(method=post, action='/login')
-			label(for='login') Username:
-			br
-			input(name='userName')
-
-      label(for='password') Password:
-			br
-			input(name='password')
+    form(method=post, action='/login')
+      label(for='login') Username:
       br
-			input(type='submit', name='submit', value='submit')
+      input(name='userName')
+      br
+      label(for='password') Password:
+      br
+      input(name='password')
+      br
+      br
+      input(type='submit', name='submit', value='submit')

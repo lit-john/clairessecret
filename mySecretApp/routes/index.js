@@ -35,7 +35,7 @@ router.post('/login', function(req, res, next){
   //userName is a property of the session
   //Not sure if this will save when app is closed, will test
   req.session.userName = userName;
-
+  
 //Telling the server which jade page to render to html (in this one its the hi page),
 //and send to the browser after the user clicks submit
 
