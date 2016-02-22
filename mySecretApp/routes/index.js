@@ -9,10 +9,10 @@ var bodyParser = require('body-parser');
 
 
 //This is where the requests are sent by the router.
-//If the router just receives a get request with /, use the function below
+//If the router just receives a get request with /login, use the function below
 //This is the file that handles all of the requests.
 /* GET home page. */
-router.get('/login', function(req, res, next) {
+router.get('/login', function(req, res, next){
   res.render('login');
 });
 
@@ -31,7 +31,7 @@ router.post('/login', function(req, res, next){
 
   //I've created a variable, which stores the parameter userName, sent from the form,
   //to the query and I'm grabbing it out of the query.
-  //userName is a parameter sent from the form with the request to the funciton (on the welcome.jade page)
+  //userName is a parameter sent from the form with the request to the funciton (on the login.jade page)
   var userNameForSession = req.body.userName;
 
   //This will store the users name in a session.
@@ -46,10 +46,10 @@ router.post('/login', function(req, res, next){
 //user will be brought to their secrets page when they click submit
 //Or if their log in details are incorrect, they'll be brought to the wrongLogin page
 //I'm going to use an array to store the users secrets
-  res.render ('mySecrets', {secrets: secretsArray});
+  res.render('mySecrets', {secrets: secretsArray});
   }
-  else {
-    res.render("wrongLogin");
+  else{
+    res.render('wrongLogin');
   }
 });
 

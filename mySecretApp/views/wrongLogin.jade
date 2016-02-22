@@ -4,16 +4,16 @@ html
     meta(http-equiv='cache-control', content='no-store')
     title User Login
   body
-    h1 Oops, your details appear to be incorrect!
+    h1 Oops, your log in details appear to be incorrect!
     h2 Please try again
-    form(action='/login', method='post', enctype='multipart/form-data')
+    form(action='/login', method='post')
       label(for='login') Username:
       br
       input(name='userName')
       br
       label(for='password') Password:
       br
-      input(type='password', name='password')
+      input(name='password')
       br
       br
       input(type='submit', value='submit')
