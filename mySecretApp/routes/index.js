@@ -5,8 +5,21 @@ var bodyParser = require('body-parser');
 //Found this server on http://expressjs-book.com/index.html%3Fp=128.html
 //var RedisStore = require('connect-redis')(express);
 
-var secretsArray =[];
+var allSecrets = new Array();
+var secretCounter = 1;
 
+var getSecretIndex = function(secretID){
+  var secretIndex = -1;
+
+  for (var i= 0; i < allSecrets.length; i++){
+    console.log("Checking " + allSecrets[i].id + "against" + secretID);
+    if (allSecrets[i].id == secretId){
+      secretIndex = i;
+    }
+  }
+
+  return secretIndex;
+}
 
 router.get('/', function(req, res, next){
 
@@ -14,15 +27,22 @@ router.get('/', function(req, res, next){
     res.render('login');
   }
   else{
-    res.render('mySecrets');
+    console.log(req.session.userName);
+    res.render('mySecrets', {secrets: allSecrets});
   }
 });
 
+
+
 //Creating a variable to hold a new secret and pushing it into the array.
 router.get('/addNewSecret', function(req, res, next){
-  var newSecret = req.query.secret;
-  secretsArray.push(newSecret);
-  res.render('mySecrets', {individualSecret: secretsArray});
+  //creating an object to store the secret
+  var secret = {};
+  secret.id = secretCounter++;
+  secret.date = new Date();
+  secret.secret = req.query.secretText;
+  allSecrets.push(secret);
+  res.redirect('/');
 });
 
 
@@ -64,7 +84,7 @@ router.post('/login', function(req, res, next){
 //user will be brought to their secrets page when they click submit
 //Or if their log in details are incorrect, they'll be brought to the wrongLogin page
 //I'm going to use an array to store the users secrets
-  res.render('mySecrets');
+  res.render('mySecrets', {secrets: allSecrets});
   }
   else{
     res.render('wrongLogin');
