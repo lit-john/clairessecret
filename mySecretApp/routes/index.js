@@ -23,7 +23,7 @@ var getSecretIndex = function(secretID){
 
 router.get('/', function(req, res, next){
 
-  if(!req.session.userName){
+  if(!req.session){
     res.render('login');
   }
   else{

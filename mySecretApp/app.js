@@ -9,7 +9,6 @@ var bodyParser = require('body-parser');
 
 //This is telling the app that routes is = the index.js file, which is in the routes folder
 var routes = require('./routes/index');
-var users = require('./routes/users');
 
 /*
  * Requiring the following package to be able to use sessions.
@@ -39,6 +38,8 @@ var expressSessionOptions = {
   resave: false,
   saveUninitialized: false
 }
+
+
 app.use(session(expressSessionOptions));
 
 /*app.use(express.session({ store: new RedisStore({
@@ -49,7 +50,6 @@ app.use(session(expressSessionOptions));
 
 //Anytime i get any kind of a request, use routes, which is the index.js file
 app.use('/', routes);
-app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
