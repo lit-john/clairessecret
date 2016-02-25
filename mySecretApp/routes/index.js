@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 //Found this server on http://expressjs-book.com/index.html%3Fp=128.html
 //var RedisStore = require('connect-redis')(express);
 
+var secretsArray =[];
 
 
 router.get('/', function(req, res, next){
@@ -16,6 +17,15 @@ router.get('/', function(req, res, next){
     res.render('mySecrets');
   }
 });
+
+//Creating a variable to hold a new secret and pushing it into the array.
+router.get('/addNewSecret', function(req, res, next){
+  var newSecret = req.query.secret;
+  secretsArray.push(newSecret);
+  res.render('mySecrets', {individualSecret: secretsArray});
+});
+
+
 //This is where the requests are sent by the router.
 //If the router just receives a get request with /login, use the function below
 //This is the file that handles all of the requests.
