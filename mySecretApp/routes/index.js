@@ -7,7 +7,15 @@ var bodyParser = require('body-parser');
 
 
 
+router.get('/', function(req, res, next){
 
+  if(!req.session.userName){
+    res.render('login');
+  }
+  else{
+    res.render('mySecrets');
+  }
+});
 //This is where the requests are sent by the router.
 //If the router just receives a get request with /login, use the function below
 //This is the file that handles all of the requests.
@@ -46,7 +54,7 @@ router.post('/login', function(req, res, next){
 //user will be brought to their secrets page when they click submit
 //Or if their log in details are incorrect, they'll be brought to the wrongLogin page
 //I'm going to use an array to store the users secrets
-  res.render('mySecrets', {secrets: secretsArray});
+  res.render('mySecrets');
   }
   else{
     res.render('wrongLogin');
