@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var bodyParser = require('body-parser');
 
+
 //Found this server on http://expressjs-book.com/index.html%3Fp=128.html
 //var RedisStore = require('connect-redis')(express);
 
@@ -27,7 +28,7 @@ router.get('/', function(req, res, next){
     res.render('login');
   }
   else{
-    console.log(req.session.userName);
+    //console.log(req.session.userName);
     res.render('mySecrets', {secrets: allSecrets});
   }
 });
@@ -39,11 +40,16 @@ router.get('/addNewSecret', function(req, res, next){
   //creating an object to store the secret
   var secret = {};
   secret.id = secretCounter++;
-  secret.date = new Date();
   secret.secret = req.query.secretText;
   allSecrets.push(secret);
+
+  localStorage.setItem('allMySecrets', JSON.stringify(allSecrets));
+  console.log(localStorage.getItem('allMySecrets'));
+
   res.redirect('/');
+
 });
+
 
 
 //This is where the requests are sent by the router.
