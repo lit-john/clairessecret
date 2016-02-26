@@ -66,7 +66,23 @@ router.get('/addNewSecret', function(req, res, next){
 
 });
 
+router.get('/delete', function (req, res, next){
+  console.log("Deleting secret" + req.query.id);
+  var idForDelete = (req.query.id);
+  console.log(idForDelete);
+  var objectFromStorage = localStorage.getItem('allMySecrets');
+  var arrayFromObject = JSON.parse(objectFromStorage);
 
+  for (var i= 0; i < arrayFromObject.length; i++){
+    if (arrayFromObject[i].id == idForDelete){
+      arrayFromObject.shift(i, 1);
+    }
+  }
+
+  console.log(arrayFromObject);
+  localStorage.setItem('allMySecrets', JSON.stringify(arrayFromObject));
+  res.redirect('/');
+});
 
 //This is where the requests are sent by the router.
 //If the router just receives a get request with /login, use the function below
