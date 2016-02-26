@@ -26,7 +26,7 @@ var getSecretIndex = function(secretID){
 router.get('/', function(req, res, next){
   console.log("handling / ");
 
-  if(req.session.username === "undefined" || req.session.username === null){
+  if(req.session.userName === "undefined" || req.session.userName === null){
     console.log("Rendering login");
     res.render('login');
   }
