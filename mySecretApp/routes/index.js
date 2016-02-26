@@ -29,7 +29,11 @@ router.get('/', function(req, res, next){
   }
   else{
     //console.log(req.session.userName);
-    res.render('mySecrets', {secrets: allSecrets});
+    var retrivingData = localStorage.getItem('allMySecrets');
+    var retrivedData = JSON.parse(retrivingData);
+    console.log(retrivedData[0].id);
+    //secretCounter = retrivedData[0].id;
+    res.render('mySecrets', {secrets: retrivedData});
   }
 });
 

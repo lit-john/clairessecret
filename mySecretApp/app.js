@@ -10,9 +10,6 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   localStorage = new LocalStorage('./scratch');
 }
 
-localStorage.setItem('myFirstKey', 'myFirstValue');
-console.log(localStorage.getItem('myFirstKey'));
-
 //var RedisStore = require('connect-redis')(express);
 
 //This is telling the app that routes is = the index.js file, which is in the routes folder
