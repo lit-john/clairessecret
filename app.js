@@ -10,6 +10,7 @@ if (typeof localStorage === "undefined" || localStorage === null) {
   localStorage = new LocalStorage('./scratch');
 }
 
+console.log("local storage has just been setup");
 //var RedisStore = require('connect-redis')(express);
 
 //This is telling the app that routes is = the index.js file, which is in the routes folder
@@ -46,6 +47,8 @@ var expressSessionOptions = {
 
 
 app.use(session(expressSessionOptions));
+
+console.log("Sessions have just been setup");
 
 /*app.use(express.session({ store: new RedisStore({
   host:'127.0.0.1',
