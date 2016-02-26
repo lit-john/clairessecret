@@ -24,12 +24,14 @@ var getSecretIndex = function(secretID){
 }
 
 router.get('/', function(req, res, next){
+  console.log("handling / ");
 
   if(!req.session){
+    console.log("Rendering login");
     res.render('login');
   }
   else{
-    //console.log(req.session.userName);
+    console.log("We have a session " + req.session.userName);
     var retrieveCounterNumber = localStorage.getItem('counterValue');
     var retrivingData = localStorage.getItem('allMySecrets');
     var retrivedData = JSON.parse(retrivingData);
