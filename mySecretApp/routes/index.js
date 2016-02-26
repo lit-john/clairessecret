@@ -7,7 +7,8 @@ var bodyParser = require('body-parser');
 //var RedisStore = require('connect-redis')(express);
 
 var allSecrets = new Array();
-var secretCounter = 1;
+//var secretCounter = 1;
+var secretCounter = Number();
 
 var getSecretIndex = function(secretID){
   var secretIndex = -1;
@@ -29,10 +30,12 @@ router.get('/', function(req, res, next){
   }
   else{
     //console.log(req.session.userName);
+    var retrieveCounterNumber = localStorage.getItem('counterValue');
     var retrivingData = localStorage.getItem('allMySecrets');
     var retrivedData = JSON.parse(retrivingData);
-    console.log(retrivedData[0].id);
-    //secretCounter = retrivedData[0].id;
+    //console.log(retrivedData[0].id);
+    secretCounter = retrieveCounterNumber;
+    console.log(retrivedData);
     res.render('mySecrets', {secrets: retrivedData});
   }
 });
@@ -41,14 +44,23 @@ router.get('/', function(req, res, next){
 
 //Creating a variable to hold a new secret and pushing it into the array.
 router.get('/addNewSecret', function(req, res, next){
+  //Here I am getting the the array and counter number from local storage so that I can add to them instead of overwriting them.
+  //If I was to create a new array instead, like before, I would be creating a new empty array each time I restart the server and add a secret.
+  var secretCounterFromStorage = localStorage.getItem('counterValue');
+  var objectFromStorage = localStorage.getItem('allMySecrets');
+  var arrayFromObject = JSON.parse(objectFromStorage);
   //creating an object to store the secret
   var secret = {};
-  secret.id = secretCounter++;
+  secret.id = secretCounterFromStorage++;
   secret.secret = req.query.secretText;
-  allSecrets.push(secret);
+  //allSecrets.push(secret);
+  arrayFromObject.push(secret);
+//Below I am setting the new versions of the counter and array into local storage after I add each secret.
+  localStorage.setItem('allMySecrets', JSON.stringify(arrayFromObject));
+  localStorage.setItem('counterValue', secretCounterFromStorage);
+  console.log(secretCounter);
 
-  localStorage.setItem('allMySecrets', JSON.stringify(allSecrets));
-  console.log(localStorage.getItem('allMySecrets'));
+  //console.log(localStorage.getItem('allMySecrets'));
 
   res.redirect('/');
 
